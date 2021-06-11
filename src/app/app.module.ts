@@ -13,6 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
@@ -35,6 +36,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LeaderService } from './services/leader.service';
 import { LoginComponent } from './login/login.component';
@@ -84,6 +86,7 @@ import { baseURL } from './shared/baseurl';
     DishService,
     PromotionService,
     LeaderService,
+    ProcessHTTPMsgService,
     {provide: 'BaseURL', useValue: baseURL}
   ],
 

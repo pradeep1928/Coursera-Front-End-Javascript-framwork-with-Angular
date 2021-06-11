@@ -13,3 +13,7 @@ in menu.component.html
   </div>
 
   <app-dishdetail [dish]="selectedDish"></app-dishdetail>
+
+
+  //To run the server json-server
+           json-server --watch db.json -d 2000
