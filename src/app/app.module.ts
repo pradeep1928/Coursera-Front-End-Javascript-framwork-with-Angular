@@ -41,6 +41,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LeaderService } from './services/leader.service';
 import { LoginComponent } from './login/login.component';
 import { baseURL } from './shared/baseurl';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 
@@ -55,6 +56,7 @@ import { baseURL } from './shared/baseurl';
     AboutComponent,
     ContactComponent,
     LoginComponent,
+    HighlightDirective,
   ],
 
   imports: [
