@@ -1,9 +1,8 @@
 <div class="container" fxLayout="column" fxLayoutGap="10px">
-
   <div fxFlex>
     <div>
       <h3>Contact Us</h3>
-      <hr>
+      <hr />
     </div>
   </div>
 
@@ -13,11 +12,11 @@
       <div fxFlex="50" fxFlexOffset="20px">
         <h4>Our Address</h4>
         <address>
-          121, Clear Water Bay Road<br>
-          Clear Water Bay, Kowloon<br>
-          HONG KONG<br>
-          <i class="fa fa-phone"></i>: +852 1234 5678<br>
-          <i class="fa fa-fax"></i>: +852 8765 4321<br>
+          121, Clear Water Bay Road<br />
+          Clear Water Bay, Kowloon<br />
+          HONG KONG<br />
+          <i class="fa fa-phone"></i>: +852 1234 5678<br />
+          <i class="fa fa-fax"></i>: +852 8765 4321<br />
           <i class="fa fa-envelope"></i>:
           <a href="mailto:confusion@food.net">confusion@food.net</a>
         </address>
@@ -34,35 +33,36 @@
     </div>
   </div>
 
-  <div fxFlex fxFlexOffset="20px" class="form-size">
+  <div fxFlex *ngIf='feedbackForm' fxFlexOffset="20px" class="form-size" >
     <h3>Send us your Feedback</h3>
-    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
-    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <!-- <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p> -->
+
+    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" [hidden]="showFeedback || hideForm" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field class="half-width">
-          <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+          <input matInput formControlName="firstname" placeholder="First Name" type="text" required />
           <mat-error *ngIf="formErrors.firstname">
-            {{ formErrors.firstname }} 
+            {{ formErrors.firstname }}
           </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
-          <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+          <input matInput formControlName="lastname" placeholder="Last Name" type="text" required />
           <mat-error *ngIf="formErrors.lastname">
-            {{ formErrors.lastname }} 
+            {{ formErrors.lastname }}
           </mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field class="half-width">
-          <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" pattern="[0-9]*" required>
+          <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" pattern="[0-9]*" required />
           <mat-error *ngIf="formErrors.telnum">
-            {{ formErrors.telnum}} 
+            {{ formErrors.telnum }}
           </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
-          <input matInput formControlName="email" placeholder="Email" type="email" email required>
+          <input matInput formControlName="email" placeholder="Email" type="email" email required />
           <mat-error *ngIf="formErrors.email">
-            {{ formErrors.email }} 
+            {{ formErrors.email }}
           </mat-error>
         </mat-form-field>
       </p>
@@ -80,11 +80,41 @@
       </table>
       <p>
         <mat-form-field class="full-width">
-          <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
+          <textarea matInput formControlName="message" placeholder="Your Feedback" rows="12"></textarea>
         </mat-form-field>
       </p>
-      <button type="submit" mat-button class="background-primary text-floral-white"
-        [disabled]="feedbackForm.invalid">Submit</button>
+      <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">
+        Submit
+      </button>
     </form>
   </div>
+
+  <div [hidden]='feedbackForm || errMess' [@expand]>
+    <br>
+    <h4>Submitting Form...</h4>
+    <mat-spinner></mat-spinner>
+  </div>
+
+
+  <div *ngIf='showFeedback' [@expand]>
+    <h4>Your Submission</h4>
+    <p>First Name: {{feedback.firstname}}</p>
+    <p>Last Name: {{feedback.lastname}}</p>
+    <p>Tel. Number: {{feedback.telnum}}</p>
+    <p>Contact You?: {{feedback.agree}}</p>
+    <p>How?: {{feedback.contacttype}}</p>
+    <p>Feedback: {{feedback.message}}</p>
+  </div>
+
+  <div fxFlex *ngIf="spinLoader">
+    <h4>Submitting Form</h4>
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div fxFlex *ngIf="errMess">
+    <h2>Error</h2>
+    <h4> {{errMess}} </h4>
+  </div>
+
+
 </div>
