@@ -129,7 +129,7 @@ export class ContactComponent implements OnInit {
               setTimeout( () => {this.showFeedback = false;}, 5000 );
             },
     
-      errmess => { this.feedback = null;  this.errMess = <any>errmess; });
+      errmess => { this.feedback = null; this.spinLoader = null; this.errMess = <any>errmess; });
 
     this.feedbackForm.reset({
       firstname: '',
